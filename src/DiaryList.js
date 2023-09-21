@@ -1,7 +1,7 @@
 import DiaryItem from "./DiaryItem";
 
 const DiaryList = ({diaryList}) => {
-    console.log(diaryList)
+    // console.log(diaryList)
 
     return (
         <div className="DiaryList">
@@ -16,6 +16,7 @@ const DiaryList = ({diaryList}) => {
             {/*    ))}*/}
             <div>
                 {diaryList.map((it)=>(
+                    // <DiaryItem key={it.id} {...it}></DiaryItem>
                     <DiaryItem key={it.id} diaryItem={it}></DiaryItem>
                 ))}
             </div>
