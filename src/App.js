@@ -37,7 +37,7 @@ function App() {
 
     const dataId = useRef(0)
 
-    const onCreate = (author, content, emotion) => {
+    const onCreate = ({author, content, emotion}) => {
         const created_date = new Date().getTime()
         const newItem = {
             author,

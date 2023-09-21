@@ -28,7 +28,7 @@ const DiaryEditor = ({onCreate}) => {
             contentInput.current.focus();
             return
         }
-        onCreate(state.author, state.content, state.emotion)
+        onCreate(state)
         alert("저장 성공")
         setState({
             author: "",
