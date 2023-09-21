@@ -1,5 +1,5 @@
 const DiaryItem = ({diaryItem}) => {
-    console.log('d', diaryItem)
+    // console.log('d', diaryItem)
 
     return (
         <div className="DiaryItem">
