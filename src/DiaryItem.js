@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 
-const DiaryItem = ({diaryItem, onRemove}) => {
+const DiaryItem = ({diaryItem, onRemove, onEdit}) => {
     const [isEdit, setIsEdit] = useState(false)
     const [localContent, setLocalContent] = useState(diaryItem.content)
     const localContentInput = useRef();
@@ -36,7 +36,7 @@ const DiaryItem = ({diaryItem, onRemove}) => {
         }
 
         if (window.confirm(`${diaryItem.id}번 째 일기를 수정하시겠습니까?`)) {
-            // onEdit(diaryItem.id, localContent);
+            onEdit(diaryItem.id, localContent);
             toggleIsEdit();
         }
     };
