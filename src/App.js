@@ -79,19 +79,17 @@ function App() {
     // },[data])
     },[])
 
-    const onRemove = (targetId) => {
-        const newDiaryList = data.filter(
+    const onRemove = useCallback((targetId) => {
+        setData(data => data.filter(
             (it) => it.id !== targetId
-        );
-        setData(newDiaryList);
-    };
+        ));
+    },[]);
 
-    const onEdit = (targetId, newContent) => {
-        const newDiaryList = data.map(
+    const onEdit = useCallback((targetId, newContent) => {
+        setData(data => data.map(
             (it) => it.id === targetId ? {...it, content: newContent} : it
-        );
-        setData(newDiaryList);
-    };
+        ));
+    },[]);
 
     // const getDiaryAnalysis = () => {
     //     // if (data.length === 0) {
