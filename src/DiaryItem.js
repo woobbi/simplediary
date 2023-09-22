@@ -1,11 +1,45 @@
-const DiaryItem = ({diaryItem, onDelete}) => {
-    // console.log('d', diaryItem)
+import {useRef, useState} from "react";
 
-    const clickDelBtn = () => {
+const DiaryItem = ({diaryItem, onRemove}) => {
+    const [isEdit, setIsEdit] = useState(false)
+    const [localContent, setLocalContent] = useState(diaryItem.content)
+    const localContentInput = useRef();
+
+    /**
+     * 삭제하기
+     */
+    const handleClickRemove = () => {
         if (window.confirm(`${diaryItem.id}번째 일기를 정말 삭제하시겠습니까?`)) {
-            onDelete(diaryItem.id)
+            onRemove(diaryItem.id)
         }
     }
+
+    /**
+     * 수정하기
+     */
+    const toggleIsEdit = () => setIsEdit(!isEdit)
+
+    /**
+     * 수정 취소
+     */
+    const handleQuitEdit = () => {
+        setIsEdit(false);
+        setLocalContent(diaryItem.content);
+    };
+    /**
+     * 수정 완료
+     */
+    const handleEdit = () => {
+        if (localContent.length < 5) {
+            localContentInput.current.focus();
+            return;
+        }
+
+        if (window.confirm(`${diaryItem.id}번 째 일기를 수정하시겠습니까?`)) {
+            // onEdit(diaryItem.id, localContent);
+            toggleIsEdit();
+        }
+    };
 
     return (
         <div className="DiaryItem">
@@ -20,8 +54,29 @@ const DiaryItem = ({diaryItem, onDelete}) => {
                 {/*<div>일기: {diaryItem.content}</div>*/}
                 {/*<div>작성시간(ms): {diaryItem.created_date}</div>*/}
             </div>
-            <div className="content">{diaryItem.content}</div>
-            <button onClick={clickDelBtn}>삭제하기</button>
+            <div className="content">
+                {/*{diaryItem.content}*/}
+                {isEdit ?
+                    <>
+                        <textarea ref={localContentInput} value={localContent} onChange={(e)=>{setLocalContent(e.target.value)}}></textarea>
+                    </> :
+                    <>
+                        {diaryItem.content}
+                    </>}
+            </div>
+            {isEdit ? (
+                <>
+                    <button onClick={handleQuitEdit}>수정 취소</button>
+                    <button onClick={handleEdit}>수정 완료</button>
+                </>
+            ) : (
+                <>
+                    <button onClick={handleClickRemove}>삭제하기</button>
+                    <button onClick={toggleIsEdit}>수정하기</button>
+                </>
+            )}
+            {/*<button onClick={handelRemove}>삭제하기</button>*/}
+            {/*<button onClick={handleUpdate}>수정하기</button>*/}
         </div>
     )
 }

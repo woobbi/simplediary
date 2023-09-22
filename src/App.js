@@ -52,7 +52,7 @@ function App() {
         console.log('aaa', data)
     }
 
-    const onDelete = (targetId) => {
+    const onRemove = (targetId) => {
         const newDiaryList = data.filter(
             (it) => it.id !== targetId
         );
@@ -62,7 +62,7 @@ function App() {
     return (
         <div className="App">
             <DiaryEditor onCreate={onCreate}></DiaryEditor>
-            <DiaryList diaryList={data} onDelete={onDelete}></DiaryList>
+            <DiaryList diaryList={data} onRemove={onRemove}></DiaryList>
         </div>
     );
 }
