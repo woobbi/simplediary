@@ -19,7 +19,6 @@ const DiaryEditor = ({onCreate}) => {
     }
 
     const handleSubmit = ()=>{
-        console.log(state)
         if(state.author.length < 1){
             authorInput.current.focus();
             return

@@ -44,7 +44,6 @@ function App() {
         const res = await fetch(
             "https://jsonplaceholder.typicode.com/comments"
         ).then((res) => res.json())
-            // .then(console.log)
 
         const initData = res.slice(0, 20).map((it) => {
             return {
@@ -76,7 +75,6 @@ function App() {
         dataId.current += 1
         setData([newItem, ...data])
 
-        console.log('aaa', data)
     }
 
     const onRemove = (targetId) => {
@@ -97,7 +95,6 @@ function App() {
     //     // if (data.length === 0) {
     //     //     return { goodcount: 0, badCount: 0, goodRatio: 0 };
     //     // }
-    //     console.log("일기 분석 시작");
     //
     //     const goodCount = data.filter((it) => it.emotion >= 3).length;
     //     const badCount = data.length - goodCount;
@@ -109,7 +106,6 @@ function App() {
         if (data.length === 0) {
             return { goodCount: 0, badCount: 0, goodRatio: 0 };
         }
-        console.log("일기 분석 시작");
 
         const goodCount = data.filter((it) => it.emotion >= 3).length;
         const badCount = data.length - goodCount;
